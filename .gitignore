@@ -1,1 +1,21 @@
 .gitignore
+# ===============================
+# Tableau temporary / backup files
+# ===============================
+*.twb
+*.twbx
+*.twbr
+.~*
+
+# ===============================
+# Jupyter Notebook temp files
+# ===============================
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ===============================
+# OS junk files
+# ===============================
+.DS_Store
+Thumbs.db
+
