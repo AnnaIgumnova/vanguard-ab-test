@@ -19,3 +19,28 @@
 .DS_Store
 Thumbs.db
 
+# Keep folder structure but ignore data files
+DATA SETS/*
+data raw/*
+data clean/*
+
+!DATA SETS/.gitkeep
+!data raw/.gitkeep
+!data clean/.gitkeep
+# Ignore data folders
+DATA SETS/*
+data raw/*
+data clean/*
+
+# Keep folder structure
+!DATA SETS/.gitkeep
+!data raw/.gitkeep
+!data clean/.gitkeep
+
+# Ignore notebooks
+*.ipynb
+
+# Ignore Tableau temp / working files
+*.twb
+*.twbr
+.~*
