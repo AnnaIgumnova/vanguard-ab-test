@@ -43,4 +43,27 @@ data clean/*
 # Ignore Tableau temp / working files
 *.twb
 *.twbr
+.~*# Ignore all dataset contents
+DATA SETS/*
+
+# But keep the folder visible
+!DATA SETS/.gitkeep
+
+# Ignore other data folders
+data raw/*
+data clean/*
+
+# Keep their structure
+!data raw/.gitkeep
+!data clean/.gitkeep
+
+# Ignore notebooks by default
+*.ipynb
+
+# Allow this one notebook
+!vanguard_data_raw_cleaning.ipynb
+
+# Ignore Tableau temp / working files
+*.twb
+*.twbr
 .~*
