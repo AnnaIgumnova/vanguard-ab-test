@@ -1,68 +1,159 @@
-# vanguard-ab-test
-# Vanguard A/B Test – Digital CX Experiment (2017)
+# 📊 Vanguard A/B Test — CX Team
+This repository contains an end-to-end analysis of a Vanguard UX A/B test, using Python for data cleaning and Tableau for exploration and dashboards to evaluate whether a redesigned interface improves client funnel completion and engagement.
 
-## Project Overview
-Vanguard’s CX team ran an A/B test from **2017-03-15 to 2017-06-20** to evaluate whether a redesigned digital interface improves the **process completion rate** compared to the traditional experience.
+The project covers client demographics, behavioral activity (logins and calls), and step-by-step funnel progression to assess whether the new interface encourages more users to complete the process.
 
-- **Control (A):** Traditional online process  
-- **Test (B):** New redesigned interface  
-- **Primary KPI:** Process completion rate
 
-## Business Question
-**Does the new digital experience lead to a higher client completion rate?**
+## 🎯 Project Objective
+To evaluate whether a redesigned customer interface improves completion of a multi-step client process.
 
-## Hypotheses
-- **H0:** Completion rate(Test) = Completion rate(Control)  
-- **H1:** Completion rate(Test) > Completion rate(Control)
+Specifically, we aimed to:
+- Measure funnel completion from Start → Confirmed
+- Compare Test vs Control performance
+- Identify drop-off points and usability friction
+- Validate whether the experiment groups are comparable
+- Provide evidence-based recommendations for a rollout decision
 
-Additional questions explored:
-1. Does the uplift differ by client segment (e.g., age/tenure)?
-2. Does the new UI reduce drop-offs or steps/time to completion?
-3. Are there behavioral differences in session patterns between groups?
+## 📈 Key Insights
+Funnel Performance
+- Test group shows higher overall completion rates
+- Largest drop-off occurs early: Start → Step 1
+- Step 1 is the primary friction point
 
-## Data Sources (Links)
-- Demographics: https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_demo.txt  
-- Experiment assignment: https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_experiment_clients.txt  
-- Web activity (Part 1): https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_web_data_pt_1.txt  
-- Web activity (Part 2): https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_web_data_pt_2.txt  
+Engagement Trends
+- Logins decline month-over-month in both groups
+- Test drops more sharply in May, suggesting possible usability issues
+- Higher logins correlate with higher support calls
 
-## Tools
-- Python (pandas, numpy, matplotlib/seaborn, scipy/statsmodels)
-- Tableau (dashboard + story)
-- GitHub (version control)
-- Trello (project management)
+Demographics
+- Majority of clients aged 26–65
+- Older users complete less frequently, indicating accessibility gaps
 
-## Methodology
-### Data Preparation
-- Merged web data parts (pt_1 + pt_2)
-- Joined datasets on `client_id`
-- Filtered records to experiment window (2017-03-15 → 2017-06-20)
-- Handled missing values, duplicates, and inconsistent formatting
-- Built analysis features (completion flag, session metrics, etc.)
+Financial & Membership
+- Account balances increase with more accounts, but extreme values are unstable
+- Both groups show similar tenure distributions (5–6 years peak)
 
-### Exploratory Data Analysis
-- Compared completion rates by group (A vs B)
-- Checked sample balance and key distributions
-- Segment analysis (demographics/behavior)
-- Visualized drop-off behavior and engagement patterns
+Experiment Reliability
+- Test group is 14% larger
+- Partial months (March & June)
+- Null/missing segments
+  → Results are directional, not definitive
 
-### Statistical Testing
-- Two-proportion z-test (or chi-square test) for completion rate difference
-- Reported uplift, confidence interval, and p-value
 
-## Key Results (Summary)
-- Completion rate (Control): **[X%]**
-- Completion rate (Test): **[Y%]**
-- Uplift: **[Δ%]**
-- Statistical significance: **p = [value]**
-- Decision recommendation: **[Roll out / Iterate / Do not roll out]**
+## ⭐ Executive Summary
 
-## Tableau Dashboard
-- Tableau file: `tableau/vanguard_ab_test.twbx`
-- Dashboard highlights:
-  - Completion rate comparison
-  - Segment performance
-  - Drop-off analysis
-  - Engagement patterns
+The redesigned interface shows promising signs, with higher completion rates in the Test group. However, engagement trends and experiment design limitations reduce confidence in the results.
 
-## Repository Structure
+While the new UI may reduce friction for many users, the larger Test group, partial-month data, and inconsistent account distributions introduce bias. Because of these issues, the findings should be treated as indicative rather than conclusive.
+
+A controlled rerun with balanced groups and a consistent timeframe is recommended before making a production decision.
+
+
+## 🚀 Business Impact
+
+For Product & UX Teams
+- Identify critical friction points (especially Step 1)
+- Prioritize usability improvements early in the journey
+- Design accessibility enhancements for senior clients
+
+For Operations / Support
+- Understand relationship between logins and support calls
+- Reduce unnecessary calls through clearer flows
+
+For Leadership
+- Make rollout decisions based on measurable funnel performance
+- Validate product changes through structured experimentation
+
+
+## ⚠️ Limitations
+
+This analysis has several constraints:
+- Unequal Test vs Control group sizes (+14% Test)
+- Partial months included (March & June)
+- Null segment with missing demographic data
+- Small samples for high-account clients (unstable averages)
+- Observational rather than fully controlled experimental conditions
+As a result, conclusions are directional and not statistically definitive.
+
+
+## 📁 Repository Structure
+
+vanguard-ab-test/
+│
+├── data raw/                     # Raw text datasets (ignored via .gitignore)
+├── data clean/                   # Cleaned/processed datasets
+│
+├── vanguard_data_raw_cleaning.ipynb   # Python/Pandas data preparation
+│
+├── vanguard_ab_test_MAIN_FILE.twbx    # Final Tableau dashboards & story
+├── vanguard_ab_test_START_FILE.twbx   # Initial Tableau version
+│
+└── README.md
+
+
+## 🛠️ Data Overview
+
+The dataset consists of four raw text exports:
+- Demographics
+   https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_demo.txt
+- Experiment assignment (Control/Test labels)
+   https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_experiment_clients.txt
+- Web activity (Part 1)
+   https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_web_data_pt_1.txt
+- Web activity (Part 2)
+   https://github.com/data-bootcamp-v4/lessons/blob/main/5_6_eda_inf_stats_tableau/project/files_for_project/df_final_web_data_pt_2.txt
+
+Data includes:
+- Client demographics (age, gender, tenure)
+- Experiment group assignment
+- Logins and calls
+- Step-by-step funnel behavior
+- Account and financial metrics
+
+~70,000 total clients analyzed.
+
+
+## 🧹 Data Cleaning Workflow
+
+Performed using Python (Pandas):
+- Merge multiple raw datasets
+- Remove duplicates
+- Handle missing values and Null segments
+- Create age groups and behavioral features
+- Aggregate activity per client
+- Prepare structured datasets for Tableau
+All analysis and visualization were then conducted in Tableau.
+
+
+## 📊 Methods & Tools
+
+Python (Pandas)
+- Data cleaning and preprocessing
+
+Tableau Public/Desktop
+- Exploratory data analysis
+- Dashboards & visualizations
+- Funnel analysis
+- Month-over-Month comparisons
+- Story presentation
+
+Git/GitHub
+Version control and collaboration
+
+
+## 🔗 Dashboard & Presentation
+
+Tableau Public Story:
+https://public.tableau.com/app/profile/sana.aarsman/viz/vanguard_ab_test_MAIN_FILE_17695015283890/Presentation?publish=yes
+
+
+## 👥 Team Contributions
+
+- Data cleaning (Python/Pandas) — Anna
+- Exploratory analysis & Tableau dashboards — Anna, Blanca, Sana
+- Experiment evaluation & insights — Anna, Blanca, Sana
+- Presentation design & slides — Anna, Blanca, Sana
+- Presentation delivery — Sana, Prabhsheen
+- Repository management & GitHub — Prabhsheen
+
+
